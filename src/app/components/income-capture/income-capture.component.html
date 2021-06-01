@@ -1,0 +1,170 @@
+<div class="card m-3 mx-auto"
+     style="width:50rem;">
+    <div class="card-header bg-dark text-white">
+        Income Capture
+    </div>
+
+    <div class="card-body">
+        <form novalidate
+              autocomplete="off"
+              (ngSubmit)="calculateTax()"
+              [formGroup]="incomeCaptureForm">
+
+            <div class="form-group row mb-2">
+                <label class="col-md-3 col-form-label"
+                       for="bookNameId">Select Tax Year *</label>
+                <div class="col-md-5">
+
+                    <div class="input-group">
+                        <select id=year
+                                class="form-control"
+                                formControlName="year">
+                            <option selected
+                                    value="2021">2021 (Mar 2020 - Feb 2021)</option>
+                            <option value="2020">2020 (Mar 2019 - Feb 2020)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-3 col-form-label"
+                       for="age">Age *</label>
+                <div class="col-md-3">
+                    <input class="form-control"
+                           id="age"
+                           type="number"
+                           formControlName="age"
+                           placeholder="0"
+                           [ngClass]="{'is-invalid': displayMessage.age }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.age}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-3 col-form-label"
+                       for="frequency">How often do you get paid? *</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <select id="frequency"
+                                class="form-control"
+                                formControlName="frequency">
+                            <option value="MONTHLY">Monthly</option>
+                            <option value="ANNUAL">Yearly</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-3 col-form-label"
+                       for="earnings">Mnthly/Yealy Earnings *</label>
+                <div class="col-md-3">
+
+                    <div class="input-group">
+                        <div class="input-group-prepend"
+                             id="earnings-addon">
+                            <div class="input-group-text">
+                                R
+                            </div>
+                        </div>
+                        <input type="number"
+                               id="earnings"
+                               class="form-control"
+                               formControlName="earnings"
+                               placeholder="0"
+                               data-rule-required="true"
+                               data-rule-number="true"
+                               data-rule-min="0"
+                               aria-invalid="false"
+                               [ngClass]="{'is-invalid': displayMessage.earnings }" />
+                        <span class="invalid-feedback">
+                            {{displayMessage.earnings}}
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-3 col-form-label"
+                       for="medicalAidMembers">Medical Aid Members (Optional)</label>
+                <div class="col-md-3">
+                    <input class="form-control"
+                           id="medicalAidMembers"
+                           type="number"
+                           formControlName="medicalAidMembers"
+                           [ngClass]="{'is-invalid': displayMessage.medicalAidMembers }" />
+                    <span class="invalid-feedback">
+                        {{displayMessage.medicalAidMembers}}
+                    </span>
+
+                </div>
+            </div>
+
+            <div class="form-group row mt-4 mb-2">
+                <div class="offset-md-2 col-md-4">
+                    <button class="btn btn-primary mr-3"
+                            style="width: 80px;"
+                            type="submit">
+                        Submit
+                    </button>
+                    <button class="btn btn-outline-secondary mr-3"
+                            style="width: 80px;"
+                            type="button"
+                            title="Cancel your edits"
+                            (onClick)="resetForm()">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="alert alert-danger"
+         *ngIf="errorMessage">{{errorMessage}}
+    </div>
+</div>
+
+<div *ngIf="results"
+     class="card m-5 mx-auto"
+     style="width:50rem;">
+    <div class="card-header bg-dark text-white">
+        Tax results
+    </div>
+    <div class="card-body">
+        <div class="col-md-6">
+            <div class="card card-primary mb-4 mt-4 mt-md-0">
+              <div class="card-header">
+                <h3 class="mb-0">Results</h3>
+              </div>
+              <div class="card-body tax">
+                <div class="row">
+                  <div class="col-12">
+                    Income tax before tax credits
+                    <div id="income_tax_before_tax_credits" class="float-right font-weight-bold">
+                      R tttttttttttttt</div>
+                  </div>
+                  <div class="col-12">
+                    Tax credits
+                    <div id="tax_credits" class="float-right font-weight-bold">
+                      R dgfdsfgdfgf</div>
+                  </div>
+                  <div class="col-12">
+                    Income tax after tax credits
+                    <div id="income_tax_after_tax_credits" class="float-right font-weight-bold">
+                      R gdfgfdgfdg</div>
+                  </div>
+                  <div class="col-12">
+                    Nett income
+                    <div id="net_monthly_income" class="float-right font-weight-bold">
+                      Rfdgfdgdfgfdgdf</div>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+    </div>
+</div>
