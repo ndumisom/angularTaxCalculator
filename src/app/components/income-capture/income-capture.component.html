@@ -52,7 +52,7 @@
                                 class="form-control"
                                 formControlName="frequency">
                             <option value="MONTHLY">Monthly</option>
-                            <option value="ANNUAL">Yearly</option>
+                            <option value="ANNUALLY">Yearly</option>
                         </select>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
     </div>
 </div>
 
-<div *ngIf="results"
+<div *ngIf="incomeTaxResponse"
      class="card m-5 mx-auto"
      style="width:50rem;">
     <div class="card-header bg-dark text-white">
@@ -144,26 +144,26 @@
                   <div class="col-12">
                     Income tax before tax credits
                     <div id="income_tax_before_tax_credits" class="float-right font-weight-bold">
-                      R tttttttttttttt</div>
+                      R {{incomeTaxResponse.payAsYouEarnBeforeTaxCredit}}</div>
                   </div>
                   <div class="col-12">
                     Tax credits
                     <div id="tax_credits" class="float-right font-weight-bold">
-                      R dgfdsfgdfgf</div>
+                      R {{incomeTaxResponse.taxCredits}}</div>
                   </div>
                   <div class="col-12">
                     Income tax after tax credits
                     <div id="income_tax_after_tax_credits" class="float-right font-weight-bold">
-                      R gdfgfdgfdg</div>
+                      R {{incomeTaxResponse.payAsYouEarnBeforeTaxCredit}}</div>
                   </div>
                   <div class="col-12">
                     Nett income
                     <div id="net_monthly_income" class="float-right font-weight-bold">
-                      Rfdgfdgdfgfdgdf</div>
+                      R {{incomeTaxResponse.netCash}}</div>
                   </div>
                 </div>
               </div>
-  
+
             </div>
           </div>
     </div>
